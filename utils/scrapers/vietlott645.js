@@ -19,7 +19,7 @@ function extractPricesFromRow($row) {
 
     let price = {
         date: `${year}${month}${day}`,
-        winningNumbers: results
+        [results]: true
     };
 
     return price;
