@@ -9,7 +9,7 @@ function scrape() {
             start: true,
             onTick: function() {
                 console.log('Scraping data', new Date());
-                vietlott.getData().then(vietlott.updateStorage);
+                vietlott.runScrapers();
             }
         });
     } catch (e) {
