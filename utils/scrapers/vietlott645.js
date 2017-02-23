@@ -5,7 +5,7 @@ const Scraper = require('./Scraper');
 const _ = require('lodash');
 
 const baseUrl = 'http://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/mega-6-45/winning-numbers/?p=';
-const pages = _.range(1, 10);
+const pages = _.range(1, 20);
 const pageUrls = pages.map(pageNum => `${baseUrl}${pageNum}`);
 
 function extractPricesFromRow($row) {

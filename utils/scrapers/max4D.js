@@ -11,7 +11,7 @@ const PRICE_LEVEL_4 = 4;
 const PRICE_LEVEL_5 = 5;
 
 const baseUrl = 'http://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/max-4d/winning-numbers/?p=';
-const pages = _.range(1, 5);
+const pages = _.range(1, 20);
 const pageUrls = pages.map(pageNum => `${baseUrl}${pageNum}`);
 
 function extractPricesFromRow($row) {
