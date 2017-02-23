@@ -5,7 +5,7 @@ function scrape() {
     console.log('Init cronjob');
     try {
         var job = new CronJob({
-            cronTime: '*/15 * * * * *', // Runs every hour
+            cronTime: '0 0 * * * *', // Runs every hour
             start: true,
             onTick: function() {
                 console.log('Scraping data', new Date());
