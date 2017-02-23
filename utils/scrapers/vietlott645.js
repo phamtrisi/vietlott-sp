@@ -17,10 +17,14 @@ function extractPricesFromRow($row) {
     const results = $row.find(lotteryResultsSelector).text().trim().replace(cleanUpRegEx, '').replace(/\s{2,}/gi, ' ');
     const [day, month, year] = date.trim().split('/');
 
-    let price = {
-        date: `${year}${month}${day}`,
-        [results]: true
-    };
+    let price;
+
+    if (year && month && day) {
+        price = {
+            date: `${year}${month}${day}`,
+            [results]: true
+        };
+    }
 
     return price;
 }
@@ -39,7 +43,9 @@ function scrapeUrlFunc(url) {
                     $resultRows.each((idx, el) => {
                         const $row = $(el);
                         const prices = extractPricesFromRow($row);
-                        lotteryResults.push(prices);
+                        if (prices) {
+                            lotteryResults.push(prices);
+                        }
                     });
                 }
 

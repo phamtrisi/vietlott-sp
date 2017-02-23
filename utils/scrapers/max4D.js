@@ -39,27 +39,31 @@ function extractPricesFromRow($row) {
     const fourthPrice = $resultsContainer.find(fourthPriceSelector).text().replace(cleanUpRegEx, '');
     const fifthPrice = $resultsContainer.find(fifthPriceSelector).text().replace(cleanUpRegEx, '');
 
-    let prices = {
-        date: `${year}${month}${day}`,
-        [PRICE_LEVEL_1]: {
-            [firstPrice]: true
-        },
-        [PRICE_LEVEL_2]: {
-            [secondPrice1]: true,
-            [secondPrice2]: true
-        },
-        [PRICE_LEVEL_3]: {
-            [thirdPrice1]: true,
-            [thirdPrice2]: true,
-            [thirdPrice3]: true
-        },
-        [PRICE_LEVEL_4]: {
-            [fourthPrice]: true
-        },
-        [PRICE_LEVEL_5]: {
-            [fifthPrice]: true
-        }
-    };
+    let prices;
+
+    if (year && month && day) {
+        prices = {
+            date: `${year}${month}${day}`,
+            [PRICE_LEVEL_1]: {
+                [firstPrice]: true
+            },
+            [PRICE_LEVEL_2]: {
+                [secondPrice1]: true,
+                [secondPrice2]: true
+            },
+            [PRICE_LEVEL_3]: {
+                [thirdPrice1]: true,
+                [thirdPrice2]: true,
+                [thirdPrice3]: true
+            },
+            [PRICE_LEVEL_4]: {
+                [fourthPrice]: true
+            },
+            [PRICE_LEVEL_5]: {
+                [fifthPrice]: true
+            }
+        };
+    }
 
     return prices;
 }
@@ -78,7 +82,9 @@ function makeScrapingPromise(url) {
                     $resultRows.each((idx, el) => {
                         const $row = $(el);
                         const prices = extractPricesFromRow($row);
-                        lotteryResults.push(prices);
+                        if (prices) {
+                            lotteryResults.push(prices);
+                        }
                     });
                 }
 
