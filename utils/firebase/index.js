@@ -1,4 +1,5 @@
 const firebase = require('firebase');
+let app;
 const defaultConfig = {
     apiKey: "AIzaSyCdrt1miT-yUIIbgc_4rQHqB5O3i5mxnaw",
     authDomain: "vietlott-dd31b.firebaseapp.com",
@@ -8,7 +9,9 @@ const defaultConfig = {
 };
 
 function initFirebaseApp(config = defaultConfig) {
-    return firebase.initializeApp(config);
+    if (app) return app;
+    app = firebase.initializeApp(config);
+    return app;
 }
 
 module.exports = initFirebaseApp;

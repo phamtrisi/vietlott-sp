@@ -8,26 +8,22 @@ const firebaseApp = require('./firebase')();
 const vietlott = (() => {
     function runScrapers() {
         // Scrape ket qua max4D
-        scrapers.max4D
-            .scrape()
-            .then((data) => {
-                // Process data
-                const processedData = data.reduce((dict, cur) => {
-                    dict[cur.date] = cur;
-                    return dict;
-                }, {});
-                firebaseApp.database().ref('/max4D').set(processedData);
-            });
+        // scrapers.max4D
+        //     .scrape()
+        //     .then((data) => {
+        //         // Process data
+        //         const processedData = data.reduce((dict, cur) => {
+        //             dict[cur.date] = cur;
+        //             return dict;
+        //         }, {});
+        //         firebaseApp.database().ref('/max4D').set(processedData);
+        //     });
 
         // Scrape ket qua 6-45
         scrapers.vietlott645
             .scrape()
             .then((data) => {
-                const processedData = data.reduce((dict, cur) => {
-                    dict[cur.date] = cur;
-                    return dict;
-                }, {});
-                firebaseApp.database().ref('/vietlott645').set(processedData);
+                firebaseApp.database().ref(`/vietlott645/${data.ds}`).set(data);
             });
     }
 

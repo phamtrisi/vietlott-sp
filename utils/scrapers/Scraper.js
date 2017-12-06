@@ -1,30 +1,30 @@
+const Promise = require('bluebird');
 const _ = require('lodash');
 
 class Scraper {
     constructor({
-        name,
-        urls,
-        scrapeUrlFunc,
+        scrapeFunc,
         dbLocationRef
     } = config) {
-        this.name = name;
-        this.urls = urls;
         this.dbLocationRef = dbLocationRef;
-        this.scrapeUrlFunc = scrapeUrlFunc;
+        this.scrapeFunc = scrapeFunc;
     }
 
     scrape() {
-        if (this.urls && this.urls.length  && this.scrapeUrlFunc) {
-            const pagePromises = this.urls.map(this.scrapeUrlFunc);
-            return Promise
-                .all(pagePromises)
-                .then((data) => {
-                    return _.flatten(data);
-                });
-        }
-        else {
-            return Promise.resolve([]);
-        }
+        return new Promise((resolve, reject) => {
+            if (this.scrapeFunc) {
+                this.scrapeFunc()
+                    .then((data) => {
+                        resolve(data);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
+            }
+            else {
+                return reject('No scrape function');
+            }
+        });
     }
 }
 
