@@ -15,6 +15,7 @@ function extractPriceFromRow($row) {
 }
 
 function getLotteryResult(date) {
+    console.log('Sraping results for', date);
     const baseUrl = 'http://vietlott.vn/vi/trung-thuong/ket-qua-trung-thuong/mega-6-45/?dayPrize=';
     const day = ('0' + date.getDate()).slice(-2);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
