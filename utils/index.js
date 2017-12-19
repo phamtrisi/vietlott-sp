@@ -25,6 +25,12 @@ const vietlott = (() => {
             .then((data) => {
                 firebaseApp.database().ref(`/vietlott645/${data.ds}`).set(data);
             });
+
+        scrapers.vietlott655
+            .scrape()
+            .then((data) => {
+                firebaseApp.database().ref(`/vietlott655/${data.ds}`).set(data);
+            });
     }
 
     return {

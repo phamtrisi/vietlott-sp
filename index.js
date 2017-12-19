@@ -1,10 +1,12 @@
 const CronJob = require('cron').CronJob;
 const vietlott = require('./utils');
 const backfill645Results = require('./utils/logic/backfill645Results');
+const backfill655Results = require('./utils/logic/backfill655Results');
 
 function scrape() {
     console.log('Init cronjob');
-    // backfill645Results(new Date('2017-11-01'), new Date('2017-12-17'));
+    backfill655Results(new Date('2017-01-01'), new Date('2017-12-20'));
+
     try {
         var job = new CronJob({
             cronTime: '0 0 0 * * *', // Runs every day
