@@ -5,7 +5,7 @@ const backfill655Results = require('./utils/logic/backfill655Results');
 
 function scrape() {
     console.log('Init cronjob');
-    backfill655Results(new Date('2017-01-01'), new Date('2017-12-20'));
+    backfill655Results(new Date('2017-12-01'), new Date('2017-12-15'));
 
     try {
         var job = new CronJob({

@@ -31,10 +31,9 @@ function getLotteryResult(date) {
                 'User-Agent': 'Chrome',
             }
         }, function(err, resp, body) {
-            console.log('finished');
             if (!err) {
                 const $ = cheerio.load(body);
-                const $result = $('.box-result-detail .result-number');
+                const $result = $('.box-result-detail .result-number-mega655');
 
                 if (!$result.length) return;
 
